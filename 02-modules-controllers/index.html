@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="myModule">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -9,6 +9,7 @@
     <script src="./app.js"></script>
   </head>
   <body>
+    <div ng-controller="myController">{{ message }}</div>
     <div>10 + 20 = {{10 + 20}}</div>
     <div>10 + 20 = {{1 === 2}}</div>
     <div>10 + 20 = {{1 === 1}}</div>
