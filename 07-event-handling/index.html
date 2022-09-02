@@ -7,8 +7,39 @@
     <title>Document</title>
     <script src="https://code.angularjs.org/1.8.2/angular.min.js"></script>
     <script src="./app.js"></script>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div ng-controller="myController"></div>
+    <div ng-controller="myController">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+            <th>Like/Dislike</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="technology in technologies">
+            <td>{{technology.name}}</td>
+            <td>{{technology.likes}}</td>
+            <td>{{technology.dislikes}}</td>
+            <td>
+              <input
+                type="button"
+                value="like"
+                ng-click="incrementLikes(technology)"
+              />
+              <input
+                type="button"
+                value="dislike"
+                ng-click="incrementDislikes(technology)"
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </body>
 </html>
