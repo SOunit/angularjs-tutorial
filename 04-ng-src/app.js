@@ -1,16 +1,14 @@
-// create a module
-var myApp = angular.module("myModule", []);
+// 1. create a module
+// 2. create a controller
+// 3. connect module and controller
+var myApp = angular
+  .module("myModule", [])
+  .controller("myController", function ($scope) {
+    var country = {
+      name: "U.S.A.",
+      capital: "Washington D.C.",
+      flag: "./Images/sand.jpg",
+    };
 
-// create controller
-var myController = function ($scope) {
-  var employee = {
-    firstName: "Jack",
-    lastName: "Pearson",
-    gender: "Male",
-  };
-
-  $scope.employee = employee;
-};
-
-// register controller with module
-myApp.controller("myController", myController);
+    $scope.country = country;
+  });
