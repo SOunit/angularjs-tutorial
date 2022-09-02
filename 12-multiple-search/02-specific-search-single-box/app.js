@@ -40,4 +40,23 @@ var myApp = angular
     ];
 
     $scope.employees = employees;
+
+    $scope.search = function (item) {
+      var notTyped = $scope.searchText === undefined;
+
+      if (notTyped) {
+        return true;
+      } else {
+        if (
+          item.name.toLowerCase().indexOf($scope.searchText.toLowerCase()) !==
+            -1 ||
+          item.city.toLowerCase().indexOf($scope.searchText.toLowerCase()) !==
+            -1
+        ) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    };
   });
