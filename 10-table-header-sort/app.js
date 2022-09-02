@@ -35,6 +35,20 @@ var myApp = angular
     ];
 
     $scope.employees = employees;
-
     $scope.sortColumn = "name";
+    $scope.reverseSort = false;
+
+    $scope.sortData = function (column) {
+      var isSameColumn = $scope.sortColumn === column;
+      $scope.reverseSort = isSameColumn ? !$scope.reverseSort : false;
+      $scope.sortColumn = column;
+    };
+
+    $scope.getSortClass = function (column) {
+      if ($scope.sortColumn === column) {
+        return $scope.reverseSort ? "arrow-down" : "arrow-up";
+      }
+
+      return "";
+    };
   });
