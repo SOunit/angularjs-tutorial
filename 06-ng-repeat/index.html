@@ -28,6 +28,17 @@
           </tr>
         </tbody>
       </table>
+
+      <ul>
+        <li ng-repeat="country in countries">
+          {{country.name}} - Index {{ $index }}
+          <ul>
+            <li ng-repeat="city in country.cities">
+              {{city}} - Parent Index {{ $parent.$index }} - Index {{ $index }}
+            </li>
+          </ul>
+        </li>
+      </ul>
     </div>
   </body>
 </html>
