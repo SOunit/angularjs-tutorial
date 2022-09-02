@@ -11,12 +11,6 @@
   </head>
   <body>
     <div ng-controller="myController">
-      Search:
-      <input type="text" placeholder="Search Name" ng-model="searchText.name" />
-      <input type="text" placeholder="Search City" ng-model="searchText.city" />
-      <input type="checkbox" ng-model="exactMatch" /> Exact Match
-      <br />
-      <br />
       <table>
         <thead>
           <tr>
@@ -28,7 +22,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="employee in employees | filter:searchText:exactMatch">
+          <tr ng-repeat="employee in employees">
             <td>{{employee.name}}</td>
             <td>{{employee.dateOfBirth | date: "dd/MM/yyyy"}}</td>
             <td>{{employee.gender }}</td>
