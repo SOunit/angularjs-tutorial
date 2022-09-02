@@ -1,0 +1,1 @@
+- `ng-app` is starting point of AngularJS
