@@ -2,6 +2,7 @@ var myApp = angular
   .module("myModule", ["ngRoute"])
   .config(function ($routeProvider, $locationProvider) {
     $locationProvider.hashPrefix("");
+
     $routeProvider
       .when("/home", {
         templateUrl: "templates/home.html",
@@ -14,7 +15,10 @@ var myApp = angular
       .when("/students", {
         templateUrl: "templates/students.html",
         controller: "studentsController",
-      });
+      })
+      .otherwise({ redirectTo: "/home" });
+
+    // $locationProvider.html5Mode(true);
   })
   .controller("homeController", function ($scope) {
     $scope.message = "Home Page";
