@@ -10,12 +10,13 @@
     <script src="./app.js"></script>
   </head>
   <body>
-    <div ng-controller="countryController">
-      {{name}}
-      <div ng-controller="stateController">
-        {{$parent.name}} - {{name}}
-        <div ng-controller="cityController">
-          {{$parent.$parent.name}} - {{$parent.name}} - {{name}}
+    <div ng-controller="countryController as countryController">
+      {{countryController.name}}
+      <div ng-controller="stateController as stateController">
+        {{countryController.name}} - {{stateController.name}}
+        <div ng-controller="cityController as cityController">
+          {{countryController.name}} - {{stateController.name}} -
+          {{cityController.name}}
         </div>
       </div>
     </div>
