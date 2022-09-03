@@ -31,6 +31,12 @@ var myApp = angular
     $scope.courses = ["test course1", "test course2", "test course3"];
   })
   .controller("studentsController", function ($scope, $http, $route) {
+    $scope.$on("$routeChangeStart", function (event, next, current) {
+      if (!confirm("Are you sure you want to navigate away from this page?")) {
+        event.preventDefault();
+      }
+    });
+
     $scope.reloadData = function () {
       $route.reload();
     };
