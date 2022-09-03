@@ -1,2 +1,4 @@
 - `ng-app` is starting point of AngularJS
 - `ng-init` is not recommended. initialize data in `controller` is better.
+  - can use to hold temp data
+    - `ng-init="parentIndex = $index"`
