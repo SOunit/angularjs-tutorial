@@ -16,6 +16,10 @@ var myApp = angular
         templateUrl: "templates/students.html",
         controller: "studentsController",
       })
+      .when("/students/:id", {
+        templateUrl: "templates/studentDetails.html",
+        controller: "studentDetailsController",
+      })
       .otherwise({ redirectTo: "/home" });
 
     // $locationProvider.html5Mode(true);
@@ -30,7 +34,16 @@ var myApp = angular
     $http
       .get("https://jsonplaceholder.typicode.com/users")
       .then(function (response) {
-        console.log(response.data);
         $scope.students = response.data;
       });
-  });
+  })
+  .controller(
+    "studentDetailsController",
+    function ($scope, $http, $routeParams) {
+      $http
+        .get(`https://jsonplaceholder.typicode.com/users/${$routeParams.id}`)
+        .then(function (response) {
+          $scope.student = response.data;
+        });
+    }
+  );
