@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="myModule">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -9,11 +9,8 @@
     <script src="https://code.angularjs.org/1.8.2/angular.min.js"></script>
     <script src="./app.js"></script>
   </head>
-  <body>
+  <body ng-app="myModule">
     <div ng-controller="myController">
-      <div
-        ng-init="employees=[{name: 'Jack', gender: 'Male', city: 'LONDON'},{name: 'Jack', gender: 'Male', city: 'LONDON'},{name: 'Jack', gender: 'Male', city: 'LONDON'},{name: 'Jack', gender: 'Male', city: 'LONDON'}]"
-      ></div>
       <table>
         <thead>
           <tr>
