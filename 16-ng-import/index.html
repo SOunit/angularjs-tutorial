@@ -10,6 +10,19 @@
     <script src="./app.js"></script>
   </head>
   <body>
-    <div ng-controller="myController"></div>
+    <div ng-controller="myController">
+      <div ng-include="'employeeTable.html'"></div>
+      <br />
+      <div ng-include="employeeView"></div>
+      <br />
+      Select View:
+      <select ng-model="employeeView">
+        <option value="employeeTable.html">Table</option>
+        <option value="employeeList.html">List</option>
+      </select>
+      <br />
+      <br />
+      <div ng-include="employeeView"></div>
+    </div>
   </body>
 </html>
