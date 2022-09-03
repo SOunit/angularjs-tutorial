@@ -2,6 +2,7 @@ var myApp = angular
   .module("myModule", ["ngRoute"])
   .config(function ($routeProvider, $locationProvider) {
     $locationProvider.hashPrefix("");
+    $routeProvider.caseInsensitiveMatch = true;
 
     $routeProvider
       .when("/home", {
@@ -11,6 +12,8 @@ var myApp = angular
       .when("/courses", {
         templateUrl: "templates/courses.html",
         controller: "coursesController",
+        // setup as global already
+        // caseInsensitiveMatch: true,
       })
       .when("/students", {
         templateUrl: "templates/students.html",
@@ -18,6 +21,7 @@ var myApp = angular
       })
       .otherwise({ redirectTo: "/home" });
 
+    // need server side logic to remove #
     // $locationProvider.html5Mode(true);
   })
   .controller("homeController", function ($scope) {
