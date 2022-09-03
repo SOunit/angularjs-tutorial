@@ -30,25 +30,38 @@ var myApp = angular
   .controller("coursesController", function ($scope) {
     $scope.courses = ["test course1", "test course2", "test course3"];
   })
-  .controller("studentsController", function ($scope, $http, $route) {
-    $scope.$on("$routeChangeStart", function (event, next, current) {
-      if (
-        !confirm(
-          `Are you sure you want to navigate away from this page to ${next.$$route.originalPath}?`
-        )
-      ) {
-        event.preventDefault();
-      }
-    });
-
-    $scope.reloadData = function () {
-      $route.reload();
-    };
-
-    $http
-      .get("https://jsonplaceholder.typicode.com/users")
-      .then(function (response) {
-        console.log(response.data);
-        $scope.students = response.data;
+  .controller(
+    "studentsController",
+    function ($scope, $http, $route, $scope, $log) {
+      $scope.$on("$locationChangeStart", function (event, next, current) {
+        $log.info("$locationChangeStart fired.");
+        $log.info("event", event);
+        $log.info("next", next);
+        $log.info("current", current);
       });
-  });
+      $scope.$on("$routeChangeStart", function (event, next, current) {
+        $log.info("$routeChangeStart fired.");
+        $log.info("event", event);
+        $log.info("next", next);
+        $log.info("current", current);
+      });
+
+      // $rootScope.$on("$locationChangeSuccess", function () {
+      //   $log.info("$locationChangeSuccess fired.");
+      // });
+      // $rootScope.$on("$routeChangeSuccess", function () {
+      //   $log.info("$routeChangeSuccess fired.");
+      // });
+
+      $scope.reloadData = function () {
+        $route.reload();
+      };
+
+      $http
+        .get("https://jsonplaceholder.typicode.com/users")
+        .then(function (response) {
+          console.log(response.data);
+          $scope.students = response.data;
+        });
+    }
+  );
