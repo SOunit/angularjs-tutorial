@@ -10,6 +10,8 @@
     <script src="./app.js"></script>
   </head>
   <body>
-    <div ng-controller="myController"></div>
+    <div ng-controller="myController as myController">
+      <h1>{{myController.message}}</h1>
+    </div>
   </body>
 </html>
