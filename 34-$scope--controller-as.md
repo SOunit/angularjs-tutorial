@@ -1,6 +1,7 @@
 # $scope vs. controller-as syntax
 
 - personal preference
+- both is used for cases
 
 # $scope
 
