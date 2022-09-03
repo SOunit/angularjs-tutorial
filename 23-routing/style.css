@@ -22,3 +22,9 @@ th {
   padding: 5px;
   text-align: left;
 }
+
+/* layout */
+.leftMenu {
+  display: flex;
+  flex-direction: column;
+}
