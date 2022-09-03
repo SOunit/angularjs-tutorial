@@ -1,32 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myModule">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css" />
     <script src="https://code.angularjs.org/1.8.2/angular.min.js"></script>
     <script src="./app.js"></script>
   </head>
-  <body ng-app="myModule">
+  <body>
     <div ng-controller="myController">
       <table>
         <thead>
           <tr>
-            <th>Name</th>
+            <th>First Name</th>
+            <th>Last Name</th>
             <th>Gender</th>
-            <th>City</th>
+            <th>Salary</th>
           </tr>
         </thead>
         <tbody>
           <tr ng-repeat="employee in employees">
-            <td>{{employee.name}}</td>
-            <td>{{employee.gender}}</td>
-            <td>{{employee.city}}</td>
+            <td>{{ employee.firstName}}</td>
+            <td>{{ employee.lastName}}</td>
+            <td>{{ employee.gender}}</td>
+            <td>{{ employee.salary}}</td>
           </tr>
         </tbody>
       </table>
+
+      <ul>
+        <li ng-repeat="country in countries">
+          {{country.name}} - Index {{ $index }}
+          <ul>
+            <li ng-repeat="city in country.cities">
+              {{city}} - Parent Index {{ $parent.$index }} - Index {{ $index }}
+            </li>
+          </ul>
+        </li>
+      </ul>
     </div>
   </body>
 </html>
