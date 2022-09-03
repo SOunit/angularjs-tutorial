@@ -9,6 +9,14 @@
   - ref / lecture 27
     https://www.youtube.com/watch?v=XsRugDQaGOo&list=PL6n9fhu94yhWKHkcL7RJmmXyxkuFB3KSl&index=27
 - `controller as` syntax for nest
+
   - `$parent` is not good for nest
     - `$parent.$parent.$parent.name`
   - `controller as syntax` is good for nest
+
+- `locationChangeStart`
+
+  - exact url
+
+- `routeChangeStart`
+  - relative url

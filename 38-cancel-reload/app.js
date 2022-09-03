@@ -32,7 +32,11 @@ var myApp = angular
   })
   .controller("studentsController", function ($scope, $http, $route) {
     $scope.$on("$routeChangeStart", function (event, next, current) {
-      if (!confirm("Are you sure you want to navigate away from this page?")) {
+      if (
+        !confirm(
+          `Are you sure you want to navigate away from this page to ${next.$$route.originalPath}?`
+        )
+      ) {
         event.preventDefault();
       }
     });
