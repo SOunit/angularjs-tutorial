@@ -30,7 +30,11 @@ var myApp = angular
   .controller("coursesController", function ($scope) {
     $scope.courses = ["test course1", "test course2", "test course3"];
   })
-  .controller("studentsController", function ($scope, $http) {
+  .controller("studentsController", function ($scope, $http, $route) {
+    $scope.reloadData = function () {
+      $route.reload();
+    };
+
     $http
       .get("https://jsonplaceholder.typicode.com/users")
       .then(function (response) {
