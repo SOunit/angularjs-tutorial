@@ -10,6 +10,14 @@
     <script src="./app.js"></script>
   </head>
   <body>
-    <div ng-controller="myController"></div>
+    <div ng-controller="countryController">
+      {{name}}
+      <div ng-controller="stateController">
+        {{$parent.name}} - {{name}}
+        <div ng-controller="cityController">
+          {{$parent.$parent.name}} - {{$parent.name}} - {{name}}
+        </div>
+      </div>
+    </div>
   </body>
 </html>

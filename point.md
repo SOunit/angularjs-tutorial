@@ -8,3 +8,5 @@
 - to remove # from angular route, server side config is needed
   - ref / lecture 27
     https://www.youtube.com/watch?v=XsRugDQaGOo&list=PL6n9fhu94yhWKHkcL7RJmmXyxkuFB3KSl&index=27
+- nest
+  - `$parent` is not good for nest
