@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #333;
+}
+
+/* table */
+
+table {
+  border-collapse: collapse;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+td {
+  border: 1px solid #333;
+  padding: 5px;
+}
+
+th {
+  border: 1px solid #333;
+  padding: 5px;
+  text-align: left;
+}
+
+/* layout */
+.leftMenu {
+  display: flex;
+  flex-direction: column;
+}
