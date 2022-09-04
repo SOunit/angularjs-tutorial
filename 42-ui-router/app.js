@@ -29,6 +29,11 @@ var myApp = angular
               });
           },
         },
+      })
+      .state("studentDetails", {
+        url: "/students/:id",
+        templateUrl: "templates/studentDetails.html",
+        controller: "studentDetailsController",
       });
     // .otherwise({ redirectTo: "/home" });
 
@@ -49,5 +54,29 @@ var myApp = angular
       };
 
       $scope.students = studentList;
+    }
+  )
+  .controller(
+    "studentDetailsController",
+    function ($scope, $http, $stateParams) {
+      $http
+        .get(`https://jsonplaceholder.typicode.com/users/${$stateParams.id}`)
+        .then(function (response) {
+          $scope.student = response.data;
+        });
+    }
+  )
+  .controller(
+    "studentsSearchController",
+    function ($scope, $http, $routeParams) {
+      var url = `https://jsonplaceholder.typicode.com/users`;
+
+      if ($routeParams.name) {
+        url = `https://jsonplaceholder.typicode.com/users`;
+      }
+
+      $http.get(url).then(function (response) {
+        $scope.students = response.data;
+      });
     }
   );
