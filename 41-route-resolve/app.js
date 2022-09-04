@@ -18,6 +18,15 @@ var myApp = angular
       .when("/students", {
         templateUrl: "templates/students.html",
         controller: "studentsController",
+        resolve: {
+          studentList: function ($http) {
+            return $http
+              .get("https://jsonplaceholder.typicode.com/users")
+              .then(function (response) {
+                return response.data;
+              });
+          },
+        },
       })
       .otherwise({ redirectTo: "/home" });
 
@@ -32,7 +41,7 @@ var myApp = angular
   })
   .controller(
     "studentsController",
-    function ($scope, $http, $route, $scope, $log) {
+    function (studentList, $scope, $route, $scope, $log) {
       $scope.$on("$locationChangeStart", function (event, next, current) {
         $log.info("$locationChangeStart fired.");
         $log.info("event", event);
@@ -57,11 +66,13 @@ var myApp = angular
         $route.reload();
       };
 
-      $http
-        .get("https://jsonplaceholder.typicode.com/users")
-        .then(function (response) {
-          console.log(response.data);
-          $scope.students = response.data;
-        });
+      $scope.students = studentList;
+
+      // $http
+      //   .get("https://jsonplaceholder.typicode.com/users")
+      //   .then(function (response) {
+      //     console.log(response.data);
+      //     $scope.students = response.data;
+      //   });
     }
   );

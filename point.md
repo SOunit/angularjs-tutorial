@@ -19,4 +19,7 @@
   - exact url
 
 - `routeChangeStart`
+
   - relative url
+
+- use `resolve` to have data before transition
