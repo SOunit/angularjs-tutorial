@@ -15,13 +15,17 @@ var myApp = angular
         // setup as global already
         // caseInsensitiveMatch: true,
       })
-      .when("/students", {
-        templateUrl: "templates/students.html",
-        controller: "studentsController",
+      .when("/studentsSearch/:name?", {
+        templateUrl: "templates/studentsSearch.html",
+        controller: "studentsSearchController",
       })
       .when("/students/:id", {
         templateUrl: "templates/studentDetails.html",
         controller: "studentDetailsController",
+      })
+      .when("/students", {
+        templateUrl: "templates/students.html",
+        controller: "studentsController",
       })
       .otherwise({ redirectTo: "/home" });
 
@@ -34,18 +38,29 @@ var myApp = angular
   .controller("coursesController", function ($scope) {
     $scope.courses = ["test course1", "test course2", "test course3"];
   })
-  .controller("studentsController", function ($scope, $http, $route) {
-    $scope.reloadData = function () {
-      $route.reload();
-    };
+  .controller(
+    "studentsController",
+    function ($scope, $http, $route, $location) {
+      $scope.searchStudent = function () {
+        if ($scope.name) {
+          $location.url(`/studentsSearch/${$scope.name}`);
+        } else {
+          $location.url(`/studentsSearch`);
+        }
+      };
 
-    $http
-      .get("https://jsonplaceholder.typicode.com/users")
-      .then(function (response) {
-        console.log(response.data);
-        $scope.students = response.data;
-      });
-  })
+      $scope.reloadData = function () {
+        $route.reload();
+      };
+
+      $http
+        .get("https://jsonplaceholder.typicode.com/users")
+        .then(function (response) {
+          console.log(response.data);
+          $scope.students = response.data;
+        });
+    }
+  )
   .controller(
     "studentDetailsController",
     function ($scope, $http, $routeParams) {
@@ -54,5 +69,19 @@ var myApp = angular
         .then(function (response) {
           $scope.student = response.data;
         });
+    }
+  )
+  .controller(
+    "studentsSearchController",
+    function ($scope, $http, $routeParams) {
+      var url = `https://jsonplaceholder.typicode.com/users`;
+
+      if ($routeParams.name) {
+        url = `https://jsonplaceholder.typicode.com/users`;
+      }
+
+      $http.get(url).then(function (response) {
+        $scope.students = response.data;
+      });
     }
   );
