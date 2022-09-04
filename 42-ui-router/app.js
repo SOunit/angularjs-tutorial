@@ -1,21 +1,23 @@
 var myApp = angular
-  .module("myModule", ["ngRoute"])
-  .config(function ($routeProvider, $locationProvider) {
+  .module("myModule", ["ui.router"])
+  .config(function ($stateProvider, $locationProvider) {
     $locationProvider.hashPrefix("");
-    $routeProvider.caseInsensitiveMatch = true;
 
-    $routeProvider
-      .when("/home", {
+    $stateProvider
+      .state("home", {
+        url: "/home",
         templateUrl: "templates/home.html",
         controller: "homeController",
       })
-      .when("/courses", {
+      .state("courses", {
+        url: "/courses",
         templateUrl: "templates/courses.html",
         controller: "coursesController",
         // setup as global already
         // caseInsensitiveMatch: true,
       })
-      .when("/students", {
+      .state("students", {
+        url: "/students",
         templateUrl: "templates/students.html",
         controller: "studentsController",
         resolve: {
@@ -27,8 +29,8 @@ var myApp = angular
               });
           },
         },
-      })
-      .otherwise({ redirectTo: "/home" });
+      });
+    // .otherwise({ redirectTo: "/home" });
 
     // need server side logic to remove #
     // $locationProvider.html5Mode(true);
@@ -41,38 +43,11 @@ var myApp = angular
   })
   .controller(
     "studentsController",
-    function (studentList, $scope, $route, $scope, $log) {
-      $scope.$on("$locationChangeStart", function (event, next, current) {
-        $log.info("$locationChangeStart fired.");
-        $log.info("event", event);
-        $log.info("next", next);
-        $log.info("current", current);
-      });
-      $scope.$on("$routeChangeStart", function (event, next, current) {
-        $log.info("$routeChangeStart fired.");
-        $log.info("event", event);
-        $log.info("next", next);
-        $log.info("current", current);
-      });
-
-      // $rootScope.$on("$locationChangeSuccess", function () {
-      //   $log.info("$locationChangeSuccess fired.");
-      // });
-      // $rootScope.$on("$routeChangeSuccess", function () {
-      //   $log.info("$routeChangeSuccess fired.");
-      // });
-
+    function (studentList, $scope, $state, $scope, $log) {
       $scope.reloadData = function () {
-        $route.reload();
+        $state.reload();
       };
 
       $scope.students = studentList;
-
-      // $http
-      //   .get("https://jsonplaceholder.typicode.com/users")
-      //   .then(function (response) {
-      //     console.log(response.data);
-      //     $scope.students = response.data;
-      //   });
     }
   );
